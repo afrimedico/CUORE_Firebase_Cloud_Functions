@@ -12,9 +12,10 @@ exports.outputTextMsgToDB = functions.https.onRequest((request, response) => {
 
   if (request.method === "POST"){
     let setAda = docRef.set({
-      SmsSid: request.body.SmsStatus,//["SmsSid"],
-      Status: request.body.SmsStatus,//["SmsStatus"],
-      Body: request.body.Body//["Body"]
+      SmsInfo: request.body
+      //SmsSid: request.body.SmsStatus,//["SmsSid"],
+      //Status: request.body.SmsStatus,//["SmsStatus"],
+      //Body: request.body.Body//["Body"]
     });
     //console.log("Genarate a document of textmsg in a DB Successfully!");
   } 
