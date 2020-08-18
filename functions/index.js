@@ -12,8 +12,8 @@ exports.outputTextMsgToDB = functions.https.onRequest((request, response) => {
 
   if (request.method === "POST"){
     let setAda = docRef.set({
-      SmsInfo: request.body
-      //SmsSid: request.body.SmsStatus,//["SmsSid"],
+      SmsInfo: request
+      //SmsSid: request.body.SmsSid//["SmsSid]
       //Status: request.body.SmsStatus,//["SmsStatus"],
       //Body: request.body.Body//["Body"]
     });
@@ -29,60 +29,6 @@ exports.outputTextMsgToDB = functions.https.onRequest((request, response) => {
 
 });
 
-exports.outputTextMsgToDB1 = functions.https.onRequest((request, response) => {
-
-  const admin = require('firebase-admin');//const functions = require('firebase-functions');
-  admin.initializeApp(functions.config().firebase);
-  let db = admin.firestore();
-  let docRef = db.collection('users').doc('alovelace');
-
-  let a = new date
-  date = now()
-
-  let setAda = docRef.set({
-    first: 'Ada',
-    last: 'Lovelace',
-    born: 1815
-  });
-
-  response.status(200).send("Genarate a textmsg to a DB Successfully!");
-
-});
-
-exports.addTextMsgToDB2 = functions.https.onRequest((request, response) => {
-
-  const admin = require('firebase-admin');//const functions = require('firebase-functions');
-  admin.initializeApp(functions.config().firebase);
-  let db = admin.firestore();
-  let aTuringRef = db.collection('users').doc('aturing');
-
-  let setAlan = aTuringRef.set({
-    'first': 'Alan2',
-    'middle': 'Mathison',
-    'last': 'Turing',
-    'born': 1912
-  });
-  response.status(200).send("Adding a textmsg to a DB Successfully!");
-
-});
-
-
-exports.outputTextMsgToStrage = functions.https.onRequest((request, response) => {
-  //const fs = require('fs')
-  const {Storage} = require('@google-cloud/storage');
-  const storage = new Storage();
-  const myBucket = storage.bucket('Test');
-  const file = myBucket.file('test.txt');
-  //const file = myBucket.file('my-file');
-  const contents = 'This is the contents of the file.';
-  
-  //-
-  // If the callback is omitted, we'll return a Promise.
-  //-
-  //fs.writeFileSync( file, contents)
-  file.save(contents)//.then(function() {});
-  response.status(200).send("Genarate a textmsg to a file Successfully!");
-});
  
 exports.helloWorld = functions.https.onRequest((request, response) => {
 
@@ -98,7 +44,7 @@ exports.helloWorld = functions.https.onRequest((request, response) => {
 
   let temp = "Hello from Firebase!" + "!!!!!!!!!!!!!!!!"
 
-  response.status(200).send("Hello from Firebase!" + ' ' + dateToFormatString(new Date(), '%DD%-%MMM%-%YYYY%(%w%)%HH%:%mm%:%ss%', 'en-US') + '(UTC)');//toString(format));
+  response.status(200).send("Hello from Firebase!" + ' ' + dateToFormatString(new Date(), '%DD%-%MMM%-%YYYY%(%w%)%HH%:%mm%:%ss%', 'en-US') );
 
 });
 
